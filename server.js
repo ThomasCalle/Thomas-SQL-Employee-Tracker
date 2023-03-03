@@ -31,6 +31,7 @@ console.log(`
                                         | |             __/ |                                              
                                         |_|            |___/                                           `);
 
+
 // function to start the application
 function start() {
     inquirer
@@ -80,6 +81,105 @@ function start() {
         });
 }
 
+// function to view all departments
+function viewAllDepartments() {
+    const query = "SELECT * FROM departments";
+    db.query(query, (err, res) => {
+        if (err) throw err;
+        console.table(res);
+        // restart the application
+        start();
+    });
+}
 
-// upload iPhone work from tuesday
+// function to view all roles
+function viewAllRoles() {
+    const query =
+    'Select * from roles'
+    db.query(query, (err, res) => {
+        if (err) throw err;
+        console.table(res);
+        // restart the application
+        start();
+    });
+}
 
+// function to view all employees
+function viewAllEmployees() {
+    const query = 
+    "Select * from employee"
+    db.query(query, (err, res) => {
+        if (err) throw err;
+        console.table(res);
+        // restart the application
+        start();
+    });
+}
+
+// function to add a department
+function addDepartment() {
+    inquirer
+        .prompt({
+            type: "input",
+            name: "name",
+            message: "Enter the name of the new department:",
+        })
+        .then((answer) => {
+            const query = "INSERT INTO departments SET ?";
+            db.query(query, { name: answer.name }, (err, res) => {
+                if (err) throw err;
+                console.log(`Added department ${answer.name} to the database!`);
+                // restart the application
+                start();
+            });
+        });
+}
+
+// function to add a role
+function addRole() {
+    const queryDepartments = "SELECT * FROM departments";
+    db.query(queryDepartments, (err, res) => {
+        if (err) throw err;
+        inquirer
+            .prompt([
+                {
+                    type: "input",
+                    name: "title",
+                    message: "Enter the title of the new role:",
+                },
+                {
+                    type: "input",
+                    name: "salary",
+                    message: "Enter the salary of the new role:",
+                },
+                {
+                    type: "list",
+                    name: "department",
+                    message: "Select the department for the new role:",
+                    choices: res.map((department) => department.name),
+                },
+            ])
+            .then((answers) => {
+                const department = res.find(
+                    (department) => department.name === answers.department
+                );
+                const query = "INSERT INTO roles SET ?";
+                db.query(
+                    query,
+                    {
+                        title: answers.title,
+                        salary: answers.salary,
+                        department_id: department.id,
+                    },
+                    (err, res) => {
+                        if (err) throw err;
+                        console.log(
+                            `Added role ${answers.title} with salary ${answers.salary} for department ${answers.department} to the database!`
+                        );
+                        // restart the application
+                        start();
+                    }
+                );
+            });
+    });
+}
