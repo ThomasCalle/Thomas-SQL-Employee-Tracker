@@ -31,9 +31,6 @@ console.log(`
                                         | |             __/ |                                              
                                         |_|            |___/                                           `);
 
-
-
-
 // function to start the application
 function start() {
     inquirer
@@ -82,3 +79,7 @@ function start() {
             }
         });
 }
+
+
+// upload iPhone work from tuesday
+
