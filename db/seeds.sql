@@ -13,16 +13,16 @@ VALUES
 
 INSERT INTO roles (title, salary, department_id)
 VALUES 
-('Manager', 85,000.00, 1),
-('Assistant Manager', 55,000.00, 1),
-('Sales Associate', 129,000.00, 1),
-('Marketing Manager', 90,000.00, 2),
-('Marketing Coordinator', 75,000.00, 2),
-('HR Manager', 120,000.00, 3),
-('HR Coordinator', 85,000.00, 3),
-('Finance Manager', 95,000.00, 4),
-('Senior Engineer', 180,000.00, 5),
-('Software Developer', 85,000.00, 5);
+('Manager', 85000.00, 1),
+('Assistant Manager', 55000.00, 1),
+('Sales Associate', 129000.00, 1),
+('Marketing Manager', 90000.00, 2),
+('Marketing Coordinator', 75000.00, 2),
+('HR Manager', 120000.00, 3),
+('HR Coordinator', 85000.00, 3),
+('Finance Manager', 95000.00, 4),
+('Senior Engineer', 180000.00, 5),
+('Software Developer', 85000.00, 5);
 
 INSERT INTO employee (first_name, last_name, role_id, manager_id)
 VALUES
