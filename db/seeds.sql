@@ -33,7 +33,7 @@ VALUES
 ('Tom', 'Cruise', 5, 1),
 ('Thomas', 'Shelby', 6, 1),
 ('Tom', 'Ford', 7, 1),
-('Thomas', 'Calle', 8, 1),
+('Thomas', 'Calle', 5, 1),
 ('Tom', 'Holland', 9, 1),
 ('Thomas', 'The Apostle', 10, 1);
 
