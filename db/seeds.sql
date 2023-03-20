@@ -34,5 +34,5 @@ VALUES
 ('Tom', 'Hanks', 6, 6),
 ('Tom', 'Holland', 7, 7),
 ('Tom', 'Ford', 8, 8),
-('Thomas', 'The Apostle', 9, 9)
-('Tom', 'Cruise', 10, 10),;
+('Thomas', 'The Apostle', 9, 9),
+('Tom', 'Cruise', 10, 10);

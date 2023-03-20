@@ -1,5 +1,6 @@
 const inquirer = require("inquirer");
 const mysql = require("mysql2");
+const cfonts = require('cfonts');
 
 // create a MySQL connection
 const connection = mysql.createConnection({
@@ -18,7 +19,23 @@ connection.connect((err) => {
     start();
 });
 
-// function to start the application
+// Function to start the application of CFONT 
+cfonts.say('Thomas & Friends \nSQL Employee Tracker', {
+	font: 'block',              // define the font face
+	align: 'left',              // define text alignment
+	colors: ['blue'],         // define all colors
+	background: 'transparent',  // define the background color, you can also use `backgroundColor` here as key
+	letterSpacing: 1,           // define letter spacing
+	lineHeight: 1,              // define the line height
+	space: true,                // define if the output text should have empty lines on top and on the bottom
+	maxLength: '0',             // define how many character can be on one line
+	gradient: false,            // define your two gradient colors
+	independentGradient: false, // define if you want to recalculate the gradient for each new line
+	transitionGradient: false,  // define if this is a transition between colors directly
+	env: 'node'                 // define the environment cfonts is being executed in
+});
+
+// Function to Start Thomas SQL Employee Tracker Application
 function start() {
     inquirer
         .prompt({
@@ -197,7 +214,7 @@ function addRole() {
     });
 }
 
-// function to add an employee
+// Function to add an employee
 function addEmployee() {
     // Retrieve list of roles from the database
     connection.query("SELECT id, title FROM roles", (error, results) => {
@@ -281,7 +298,7 @@ function addEmployee() {
         );
     });
 }
-
+// Function to add a Manager
 function addManager() {
     const queryDepartments = "SELECT * FROM departments";
     const queryEmployees = "SELECT * FROM employee";
@@ -409,7 +426,7 @@ function updateEmployeeRole() {
 }
 
 // Remember: iPad forced push to origin main deleted local stash that fixed bonus question for salary summary
-
+// Function to View Employee By Manager
 function viewEmployeesByManager() {
     const query = `
       SELECT 
@@ -460,7 +477,7 @@ function viewEmployeesByManager() {
         start();
     });
 }
-
+// Function to view Employees by Department
 function viewEmployeesByDepartment() {
     const query =
         "SELECT departments.department_name, employee.first_name, employee.last_name FROM employee INNER JOIN roles ON employee.role_id = roles.id INNER JOIN departments ON roles.department_id = departments.id ORDER BY departments.department_name ASC";
@@ -473,7 +490,7 @@ function viewEmployeesByDepartment() {
         start();
     });
 }
-
+// Function to DELETE Departments Roles Employees
 function deleteDepartmentsRolesEmployees() {
     inquirer
         .prompt({
@@ -500,7 +517,7 @@ function deleteDepartmentsRolesEmployees() {
             }
         });
 }
-
+// Function to DELETE Employees
 function deleteEmployee() {
     const query = "SELECT * FROM employee";
     connection.query(query, (err, res) => {
@@ -536,7 +553,7 @@ function deleteEmployee() {
             });
     });
 }
-
+// Function to DELETE ROLE
 function deleteRole() {
     // retrieve all available roles from the database
     const query = "SELECT * FROM roles";
@@ -574,7 +591,7 @@ function deleteRole() {
             });
     });
 }
-
+// Fuction to DELETE Department
 function deleteDepartment() {
     // get the list of departments
     const query = "SELECT * FROM departments";
@@ -618,7 +635,7 @@ function deleteDepartment() {
             });
     });
 }
-
+// Function to view Total Utilized Budget of Department
 function viewTotalUtilizedBudgetOfDepartment() {
     const query = "SELECT * FROM departments";
     connection.query(query, (err, res) => {
@@ -664,8 +681,9 @@ function viewTotalUtilizedBudgetOfDepartment() {
     });
 }
 
-
 // close the connection when the application exits
 process.on("exit", () => {
     connection.end();
 });
+// Thank you for viewing!
+// Thomas Calle 😊
